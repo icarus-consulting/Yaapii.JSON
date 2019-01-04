@@ -11,7 +11,7 @@ namespace Yaapii.JSON.Test
         public void RetrievesValue()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -24,14 +24,14 @@ namespace Yaapii.JSON.Test
         [Fact]
         public void RejectsEmptyString()
         {
-            Assert.Throws<ArgumentException>(() => new JSON(String.Empty).Token());
+            Assert.Throws<ArgumentException>(() => new JSONOf(String.Empty).Token());
         }
 
         [Fact]
         public void ErrorWhenNotAValue()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -45,7 +45,7 @@ namespace Yaapii.JSON.Test
         public void ErrorWhenMultipleValues()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -59,7 +59,7 @@ namespace Yaapii.JSON.Test
         public void ErrorWhenValueNotFound()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -73,7 +73,7 @@ namespace Yaapii.JSON.Test
         public void RetrievesJson()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -90,7 +90,7 @@ namespace Yaapii.JSON.Test
         public void ErrorWhenNotANode()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -104,7 +104,7 @@ namespace Yaapii.JSON.Test
         public void ErrorWhenMultipleNodes()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -118,7 +118,7 @@ namespace Yaapii.JSON.Test
         public void RetrievesMultipleNodes()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -132,7 +132,7 @@ namespace Yaapii.JSON.Test
         public void RejectsInvalidTypeInMultipleNodes()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)
@@ -146,7 +146,7 @@ namespace Yaapii.JSON.Test
         public void RetrievesMultipleValues()
         {
             var json =
-                new JSON(
+                new JSONOf(
                     new ResourceOf(
                         "Datum/data.json",
                         typeof(JSONTests)

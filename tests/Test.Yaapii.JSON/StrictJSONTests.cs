@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using Yaapii.Json;
 
 namespace Yaapii.JSON.Test
 {
@@ -12,7 +13,7 @@ namespace Yaapii.JSON.Test
 
             Assert.Throws<InvalidJSONException>(() =>
             {
-                new StrictJSON(new JSON(json), schema).Value("test");
+                new StrictJSON(new JSONOf(json), schema).Value("test");
             });
         }
 
@@ -25,7 +26,7 @@ namespace Yaapii.JSON.Test
             Assert.Equal(
                 "a word",
                 new StrictJSON(
-                    new JSON(json),
+                    new JSONOf(json),
                     schema
                 ).Value("test")
             );
