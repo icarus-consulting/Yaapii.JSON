@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="C:\Users\mtu.ICARUS-CONSULT\source\repos\Yaapii.JSON\Yaapii.JSON.csproj" />
+    <ProjectReference Include="..\..\src\Yaapii.JSON\Yaapii.JSON.csproj" />
   </ItemGroup>
 
   <ItemGroup>
