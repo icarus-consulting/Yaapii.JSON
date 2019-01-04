@@ -15,20 +15,20 @@ namespace Yaapii.JSON
     /// <summary>
     /// A readonly JSON, read from a data source.
     /// </summary>
-    public sealed class JSON : IJSON
+    public sealed class JSONOf : IJSON
     {
         private readonly IScalar<JToken> token;
 
         /// <summary>
         /// A readonly JSON from a string.
         /// </summary>
-        public JSON(string json) : this(new InputOf(json))
+        public JSONOf(string json) : this(new InputOf(json))
         { }
 
         /// <summary>
         /// A readonly JSON from a <see cref="IInput"/>.
         /// </summary>
-        public JSON(IInput json) : this(
+        public JSONOf(IInput json) : this(
             new StickyScalar<string>(() =>
             {
                 var str = new TextOf(json).AsString();
@@ -44,13 +44,13 @@ namespace Yaapii.JSON
         /// <summary>
         /// A readonly JSON from a <see cref="JToken"/>.
         /// </summary>
-        public JSON(JToken token) : this(new ScalarOf<JToken>(token))
+        public JSONOf(JToken token) : this(new ScalarOf<JToken>(token))
         { }
 
         /// <summary>
         /// A readonly JSON from a <see cref="IScalar{OutValue}"/>.
         /// </summary>
-        public JSON(IScalar<string> json) : this(new ScalarOf<JToken>(() =>
+        public JSONOf(IScalar<string> json) : this(new ScalarOf<JToken>(() =>
         {
             try
             {
@@ -67,7 +67,7 @@ namespace Yaapii.JSON
         /// <summary>
         /// A readonly JSON from a <see cref="IScalar{OutValue}"/>.
         /// </summary>
-        public JSON(IScalar<JToken> json)
+        public JSONOf(IScalar<JToken> json)
         {
             this.token = json;
         }
@@ -107,7 +107,7 @@ namespace Yaapii.JSON
             {
                 if (token is JObject || token is JProperty)
                 {
-                    result.Add(new JSON(token));
+                    result.Add(new JSONOf(token));
                 }
                 else
                 {
