@@ -11,6 +11,12 @@ With this module, you can NOT:
 
 - Modify JSON data
 
+# Version Info
+This Nuget package has a dependency of Newtonsoft.Json. Therefore the version of this Nuget package adapts the major version of the referenced Newtonsoft.Json package.
+For example Yaapii.JSON 11.0.0 has a dependency to Newtonsoft.Json 11.x.x.
+Upgrading the dependency to a new major version of Newtonsoft.Json package **will** lead to a new major version of this package.
+
+
 # Usage
 
 Given this json:
