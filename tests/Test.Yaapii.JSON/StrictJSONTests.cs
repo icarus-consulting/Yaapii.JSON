@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using Yaapii.Json;
+using Yaapii.JSON;
 
 namespace Yaapii.JSON.Test
 {

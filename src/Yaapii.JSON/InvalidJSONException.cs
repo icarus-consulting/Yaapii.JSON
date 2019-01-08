@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Yaapii.Json
+namespace Yaapii.JSON
 {
     /// <summary>
     /// Tell that a json is invalid when tested against a json schema.
