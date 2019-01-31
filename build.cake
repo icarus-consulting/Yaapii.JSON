@@ -18,7 +18,7 @@ var project = new DirectoryPath("./src/Yaapii.JSON/Yaapii.JSON.csproj");
 var owner = "icarus-consulting";
 var repository = "Yaapii.JSON";
 
-var githubtoken = "";
+var githubToken = "";
 var codecovToken = "";
 
 var isAppVeyor          = AppVeyor.IsRunningOnAppVeyor;
@@ -152,7 +152,7 @@ Task("Version")
 Task("GetAuth")
     .Does(() =>
 {
-    githubtoken = EnvironmentVariable("GITHUB_TOKEN");
+    githubToken = EnvironmentVariable("GITHUB_TOKEN");
 	codecovToken = EnvironmentVariable("CODECOV_TOKEN");
 });
 
@@ -162,7 +162,8 @@ Task("Release")
   .IsDependentOn("Pack")
   .IsDependentOn("GetAuth")
   .Does(() => {
-     GitReleaseManagerCreate(githubtoken, owner, repository, new GitReleaseManagerCreateSettings {
+
+     GitReleaseManagerCreate(githubToken, owner, repository, new GitReleaseManagerCreateSettings {
             Milestone         = version,
             Name              = version,
             Prerelease        = false,
@@ -173,7 +174,7 @@ Task("Release")
 	Information("Nuget artifacts: " + nugetFiles);
 
 	GitReleaseManagerAddAssets(
-		githubtoken,
+		githubToken,
 		owner,
 		repository,
 		version,
