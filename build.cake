@@ -23,7 +23,7 @@ var codecovToken = "";
 
 var isAppVeyor          = AppVeyor.IsRunningOnAppVeyor;
 
-var version = "0.0.1";
+var version = "11.0.0";
 
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Yaapii.JSON", "D:\Development\work\Yaapii.JSON\tests\Test.Yaapii.JSON\Test.Yaapii.JSON.csproj", "{74ABF429-2188-490F-BD6C-2DBD533750BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Yaapii.JSON", "tests\Test.Yaapii.JSON\Test.Yaapii.JSON.csproj", "{74ABF429-2188-490F-BD6C-2DBD533750BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{28EAAA9C-28EC-4BFB-B4D0-D64E8281C0DC}"
 	ProjectSection(SolutionItems) = preProject
