@@ -160,7 +160,7 @@ Task("Release")
   .WithCriteria(() => isAppVeyor && BuildSystem.AppVeyor.Environment.Repository.Tag.IsTag)
   .IsDependentOn("Version")
   .IsDependentOn("Pack")
-  .IsDependentOn("GetCredentials")
+  .IsDependentOn("GetAuth")
   .Does(() => {
      GitReleaseManagerCreate(githubtoken, owner, repository, new GitReleaseManagerCreateSettings {
             Milestone         = version,
