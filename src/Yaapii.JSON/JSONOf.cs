@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using Yaapii.Atoms;
 using Yaapii.Atoms.Error;
 using Yaapii.Atoms.IO;
@@ -18,20 +19,34 @@ namespace Yaapii.JSON
     public sealed class JSONOf : IJSON
     {
         private readonly IScalar<JToken> token;
+        private readonly Encoding encoding;
+
+        /// <summary>
+        /// A readonly JSON from a input.
+        /// It is assumed that the encoding is UTF8.
+        /// </summary>
+        public JSONOf(IInput json) : this(json, Encoding.Default)
+        { }
 
         /// <summary>
         /// A readonly JSON from a string.
         /// </summary>
-        public JSONOf(string json) : this(new InputOf(json))
+        public JSONOf(string json) : this(new InputOf(json), Encoding.Default)
+        { }
+
+        /// <summary>
+        /// A readonly JSON from a string.
+        /// </summary>
+        public JSONOf(string json, Encoding encoding) : this(new InputOf(json), encoding)
         { }
 
         /// <summary>
         /// A readonly JSON from a <see cref="IInput"/>.
         /// </summary>
-        public JSONOf(IInput json) : this(
+        public JSONOf(IInput json, Encoding encoding) : this(
             new StickyScalar<string>(() =>
             {
-                var str = new TextOf(json).AsString();
+                var str = new TextOf(json, encoding).AsString();
                 if (String.IsNullOrEmpty(str))
                 {
                     throw new ArgumentException("cannot work with empty json.");
