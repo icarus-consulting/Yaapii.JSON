@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Text;
 using Xunit;
 using Yaapii.Atoms.IO;
 
@@ -20,6 +21,26 @@ namespace Yaapii.JSON.Test
 
             Assert.Equal("default", json.Value("addresses[:1].type"));
         }
+
+        [Theory]
+        [InlineData("UTF-7")]
+        [InlineData("UTF-8")]
+        [InlineData("UTF-16")]
+        [InlineData("UTF-32")]
+        public void DealsWithEncodings(string name)
+        {
+            var encoding = Encoding.GetEncoding(name);
+            var inBytes = encoding.GetBytes("{ text: 'üöä' }");
+
+            Assert.Equal(
+                "üöä",
+                new JSONOf(
+                    new InputOf(inBytes),
+                    encoding
+                ).Value("$.text")
+            );
+        }
+
 
         [Fact]
         public void RejectsEmptyString()
