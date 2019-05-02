@@ -44,7 +44,7 @@ namespace Yaapii.JSON
         /// A readonly JSON from a <see cref="IInput"/>.
         /// </summary>
         public JSONOf(IInput json, Encoding encoding) : this(
-            new StickyScalar<string>(() =>
+            new Sticky<string>(() =>
             {
                 var str = new TextOf(json, encoding).AsString();
                 if (String.IsNullOrEmpty(str))
@@ -98,10 +98,10 @@ namespace Yaapii.JSON
             {
                 throw
                     new ArgumentException(
-                        new FormattedText(
+                        new Formatted(
                             "Only a single node is retrievable with Node(), but '{0}' was: {1}",
                             jsonPath,
-                            new JoinedText(
+                            new Joined(
                                 ",\r\n",
                                 new Yaapii.Atoms.Enumerable.Mapped<IJSON, IText>(
                                     node => new TextOf(node.Token().ToString()),
@@ -127,7 +127,7 @@ namespace Yaapii.JSON
                 else
                 {
                     throw new ArgumentException(
-                        new FormattedText(
+                        new Formatted(
                             "Only objects and properties are retrievable with node(), but you selection includes: '{0}'",
                             token.ToString()
                         ).AsString()
@@ -152,7 +152,7 @@ namespace Yaapii.JSON
                 {
                     throw
                         new ArgumentException(
-                            new FormattedText(
+                            new Formatted(
                                 "Only values are retrievable with values(), but your selection includes: '{0}'",
                                 token.ToString()
                             ).AsString()
@@ -173,10 +173,10 @@ namespace Yaapii.JSON
             {
                 throw
                     new ArgumentException(
-                        new FormattedText(
+                        new Formatted(
                             "Only a single value is retrievable with Value(), but '{0}' was: {1}",
                             jsonPath,
-                            new JoinedText(
+                            new Joined(
                                 ",\r\n",
                                 values
                             ).AsString()

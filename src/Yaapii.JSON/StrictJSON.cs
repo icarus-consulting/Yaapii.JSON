@@ -37,7 +37,7 @@ namespace Yaapii.JSON
         public StrictJSON(IJSON origin, IText schema)
         {
             this.origin =
-                new StickyScalar<IJSON>(() =>
+                new Sticky<IJSON>(() =>
                 {
                     try
                     {
@@ -48,9 +48,9 @@ namespace Yaapii.JSON
                         {
                             throw
                                 new InvalidJSONException(
-                                    new FormattedText(
+                                    new Formatted(
                                         "Json is invalid: \r\n{0}\r\n\r\nJson: {1}",
-                                        new JoinedText("\r\n", errors).AsString(),
+                                        new Joined("\r\n", errors).AsString(),
                                         token.ToString()
                                     ).AsString()
                                 );
