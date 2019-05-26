@@ -20,7 +20,21 @@ namespace Yaapii.JSON
         /// A JSON whose format is validated using a JSON schema.
         /// Throws a <see cref="InvalidJSONException"/> if the JSON does not match the schema.
         /// </summary>
+        public StrictJSON(IInput origin, IInput schema) : this(new JSONOf(origin), new TextOf(schema))
+        { }
+
+        /// <summary>
+        /// A JSON whose format is validated using a JSON schema.
+        /// Throws a <see cref="InvalidJSONException"/> if the JSON does not match the schema.
+        /// </summary>
         public StrictJSON(IJSON origin, IInput schema) : this(origin, new TextOf(schema))
+        { }
+
+        ///<summary>
+        /// A JSON whose format is validated using a JSON schema.
+        /// Throws a <see cref="InvalidJSONException"/> if the JSON does not match the schema.
+        /// </summary>
+        public StrictJSON(IInput origin, string schema) : this(new JSONOf(origin), new TextOf(schema))
         { }
 
         /// <summary>
@@ -28,6 +42,13 @@ namespace Yaapii.JSON
         /// Throws a <see cref="InvalidJSONException"/> if the JSON does not match the schema.
         /// </summary>
         public StrictJSON(IJSON origin, string schema) : this(origin, new TextOf(schema))
+        { }
+
+        /// <summary>
+        /// A JSON whose format is validated using a JSON schema.
+        /// Throws a <see cref="InvalidJSONException"/> if the JSON does not match the schema.
+        /// </summary>
+        public StrictJSON(IInput origin, IText schema) : this(new JSONOf(origin), schema)
         { }
 
         /// <summary>
