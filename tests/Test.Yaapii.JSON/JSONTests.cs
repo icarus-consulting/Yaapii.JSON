@@ -22,6 +22,22 @@ namespace Yaapii.JSON.Test
             Assert.Equal("default", json.Value("addresses[:1].type"));
         }
 
+        [Fact]
+        public void UsesUTF8EncodingPerDefault()
+        {
+            var result = "öäü";
+            var json =
+                new JSONOf(
+                    new InputOf(
+                        new JObject(
+                            new JProperty("value", result)
+                        ).ToString()
+                    )
+                );
+
+            Assert.Equal(result, json.Value("value"));
+        }
+
         [Theory]
         [InlineData("UTF-7")]
         [InlineData("UTF-8")]
