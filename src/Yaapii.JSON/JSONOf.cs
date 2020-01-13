@@ -25,21 +25,15 @@ namespace Yaapii.JSON
         /// A readonly JSON from a input.
         /// It is assumed that the encoding is UTF8.
         /// </summary>
-        public JSONOf(IInput json) : this(json, Encoding.Default)
+        public JSONOf(IInput json) : this(json, Encoding.UTF8)
         { }
 
         /// <summary>
         /// A readonly JSON from a string.
         /// </summary>
-        public JSONOf(string json) : this(new InputOf(json), Encoding.Default)
+        public JSONOf(string json) : this(new ScalarOf<string>(json))
         { }
-
-        /// <summary>
-        /// A readonly JSON from a string.
-        /// </summary>
-        public JSONOf(string json, Encoding encoding) : this(new InputOf(json), encoding)
-        { }
-
+        
         /// <summary>
         /// A readonly JSON from a <see cref="IInput"/>.
         /// </summary>
