@@ -2,7 +2,9 @@
 using System;
 using System.Text;
 using Xunit;
+using Yaapii.Atoms.Bytes;
 using Yaapii.Atoms.IO;
+using Yaapii.Atoms.Text;
 
 namespace Yaapii.JSON.Test
 {
@@ -25,17 +27,25 @@ namespace Yaapii.JSON.Test
         [Fact]
         public void UsesUTF8EncodingPerDefault()
         {
-            var result = "öäü";
+            var result =
+                new BytesOf(
+                    new JObject(
+                        new JProperty("value", "öäü")
+                    ).ToString(),
+                    Encoding.UTF8
+                ).AsBytes();
             var json =
                 new JSONOf(
-                    new InputOf(
-                        new JObject(
-                            new JProperty("value", result)
-                        ).ToString()
-                    )
+                    new InputOf(result)
                 );
 
-            Assert.Equal(result, json.Value("value"));
+            Assert.Equal(
+                result, 
+                new BytesOf(
+                    json.Token().ToString(),
+                    Encoding.UTF8
+                ).AsBytes()
+            );
         }
 
         [Theory]
