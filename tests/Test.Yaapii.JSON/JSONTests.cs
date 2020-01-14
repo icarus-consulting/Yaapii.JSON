@@ -27,22 +27,21 @@ namespace Yaapii.JSON.Test
         [Fact]
         public void UsesUTF8EncodingPerDefault()
         {
-            var result =
-                new BytesOf(
-                    new JObject(
-                        new JProperty("value", "öäü")
-                    ).ToString(),
-                    Encoding.UTF8
-                ).AsBytes();
+            var value = "äöü";
+            var result = Encoding.UTF8.GetBytes(value);
             var json =
                 new JSONOf(
-                    new InputOf(result)
+                    new InputOf(
+                        new JObject(
+                            new JProperty("value", value)
+                        ).ToString()
+                    )
                 );
 
             Assert.Equal(
                 result, 
                 new BytesOf(
-                    json.Token().ToString(),
+                    json.Value("value"),
                     Encoding.UTF8
                 ).AsBytes()
             );
