@@ -1,0 +1,19 @@
+﻿{
+	"name": "jay",
+	"purpose": "this json is for testing class JSON which implements IJSON",
+	"friends": [
+		"Silent Bob"
+	],
+	"addresses": [
+		{
+			"name": "Drugstore",
+			"type": "default",
+			"number":  4
+		},
+		{
+			"name": "The mall",
+			"type": "alternative",
+			"number":  2
+		}
+	]
+}
