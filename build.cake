@@ -1,4 +1,4 @@
-#tool nuget:?package=GitReleaseManager
+#tool nuget:?package=GitReleaseManager=0.12.1
 #tool nuget:?package=xunit.runner.console
 #addin nuget:?package=Cake.Figlet&version=1.3.1
 
