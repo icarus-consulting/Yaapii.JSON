@@ -273,15 +273,18 @@ Task("GitHubRelease")
             TargetCommitish   = "main"
         }
     );
+    
     var nugets = string.Join(",", GetFiles("./artifacts/*.*nupkg").Select(f => f.FullPath) );
     Information($"Release files:{Environment.NewLine}  " + nugets.Replace(",", $"{Environment.NewLine}  "));
+
+    /*
     GitReleaseManagerAddAssets(
         gitHubToken,
         owner,
         repository,
         version,
         nugets
-    );
+    );*/
     Information($"Publish Release...");
     GitReleaseManagerPublish(gitHubToken, owner, repository, version);
 });
