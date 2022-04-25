@@ -20,7 +20,7 @@ namespace Yaapii.JSON.Test
                     )
                 );
 
-            Assert.Equal("default", json.Value("addresses[:1].type"));
+            Assert.Equal("default", json.Value("addresses[0].type"));
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace Yaapii.JSON.Test
 
             Assert.Equal(
                 JObject.Parse("{  \"name\": \"Drugstore\",  \"type\": \"default\", \"number\": 4}").ToString(),
-                json.Node("addresses[:1]").Token().ToString()
+                json.Node("addresses[0]").Token().ToString()
             );
         }
 

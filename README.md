@@ -54,7 +54,7 @@ Parse by creating a new object:
 
 Retrieve a single value:
 ```csharp
-    string value = new JSON(data).Value("addresses[:1].type"));
+    string value = new JSON(data).Value("addresses[0].type"));
 ```
 
 Retrieve multiple values:
@@ -64,7 +64,7 @@ Retrieve multiple values:
 
 Retrieve a single node:
 ```csharp
-    IJSON node = json.Node("addresses[:1]");
+    IJSON node = json.Node("addresses[0]");
 ```
 
 Retrieve multiple nodes:
