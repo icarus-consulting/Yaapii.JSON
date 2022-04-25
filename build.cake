@@ -1,4 +1,4 @@
-#tool nuget:?package=GitReleaseManager
+#tool nuget:?package=GitReleaseManager&version=0.13.0
 #tool nuget:?package=xunit.runner.console
 #addin nuget:?package=Cake.Figlet&version=1.3.1
 
@@ -273,15 +273,19 @@ Task("GitHubRelease")
             TargetCommitish   = "main"
         }
     );
+    
     var nugets = string.Join(",", GetFiles("./artifacts/*.*nupkg").Select(f => f.FullPath) );
     Information($"Release files:{Environment.NewLine}  " + nugets.Replace(",", $"{Environment.NewLine}  "));
+
+    /*
     GitReleaseManagerAddAssets(
         gitHubToken,
         owner,
         repository,
         version,
         nugets
-    );
+    );*/
+    Information($"Publish Release...");
     GitReleaseManagerPublish(gitHubToken, owner, repository, version);
 });
 
