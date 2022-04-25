@@ -11,13 +11,13 @@ Please request a review in every single PR from him.
 He will try to review the PRs within **1 week** and merge applied PRs within **2 weeks** with a new release. Main review day is thursday.
 
 # Overview
-Parse and validate JSON data using JSONPath.
+Parse and validate JSON data using [JSONPath](https://goessner.net/articles/JsonPath/).
 
 With this module you can:
 
 - Parse JSON data
 - Patch JSON data
-- Slice portions of JSON data using [JSONPath](https://goessner.net/articles/JsonPath/)
+- Slice portions of JSON data using 
 - Validate JSON data against a [https://json-schema.org](JSON Schema)
 
 # Usage
