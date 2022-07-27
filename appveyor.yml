@@ -8,7 +8,7 @@ environment:
   GITHUB_TOKEN:
     secure: DeB5HvTOAiL2ZPXX0pBBLd9BsJCIRMMXRpsvKQ4YRrGPZQ86TiT3y8VR6T7dPV6L
   NUGET_TOKEN:
-    secure: OE/m5FgzlPwKm1+GYsvHkWqLvOGE6jnVJabPWy/O8XH3re/eSDilUc8cewoO2ZlI
+    secure: hfNVh7FiNkQbrdCBKj7liVejvOTxG76WSp3gQ94ney664tmtJKYxV9EoHLtm/KiB
   APPVEYOR_TOKEN:
     secure: wVt1RgJAnhNTyIjtK9yFkQbEEM+fBk1TLUzo0j3pe2U=
 # Do not build feature branch with open Pull Requests
