@@ -12,7 +12,7 @@ var configuration           = "Release";
 // this is relative to the project root folder
 var buildArtifacts          = Directory("./artifacts");
 var deployment              = Directory("./artifacts/deployment");
-var version                 = "1.0.0";
+var version                 = "1.1.0";
 
 ///////////////////////////////////////////////////////////////////////////////
 // MODULES
@@ -277,14 +277,14 @@ Task("GitHubRelease")
     var nugets = string.Join(",", GetFiles("./artifacts/*.*nupkg").Select(f => f.FullPath) );
     Information($"Release files:{Environment.NewLine}  " + nugets.Replace(",", $"{Environment.NewLine}  "));
 
-    /*
+    
     GitReleaseManagerAddAssets(
         gitHubToken,
         owner,
         repository,
         version,
         nugets
-    );*/
+    );
     Information($"Publish Release...");
     GitReleaseManagerPublish(gitHubToken, owner, repository, version);
 });
