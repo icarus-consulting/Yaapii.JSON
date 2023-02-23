@@ -1,4 +1,3 @@
-#tool nuget:?package=GitReleaseManager&version=0.13.0
 #tool nuget:?package=xunit.runner.console
 #addin nuget:?package=Cake.Figlet&version=1.3.1
 
@@ -233,11 +232,6 @@ Task("Credentials")
 {
     Information(Figlet("Credentials"));
     
-    gitHubToken = EnvironmentVariable("GITHUB_TOKEN");
-    if (string.IsNullOrEmpty(gitHubToken))
-    {
-        throw new Exception("Environment variable 'GITHUB_TOKEN' is not set");
-    }
     nugetReleaseToken = EnvironmentVariable("NUGET_TOKEN");
     if (string.IsNullOrEmpty(nugetReleaseToken))
     {
@@ -248,45 +242,6 @@ Task("Credentials")
     {
         throw new Exception("Environment variable 'APPVEYOR_TOKEN' is not set");
     }
-});
-
-///////////////////////////////////////////////////////////////////////////////
-// GitHub Release
-///////////////////////////////////////////////////////////////////////////////
-Task("GitHubRelease")
-.WithCriteria(() => isAppVeyor && BuildSystem.AppVeyor.Environment.Repository.Tag.IsTag)
-.IsDependentOn("Version")
-.IsDependentOn("NuGet")
-.IsDependentOn("Credentials")
-.Does(() => 
-{
-    Information(Figlet("GitHub Release"));
-    
-    GitReleaseManagerCreate(
-        gitHubToken,
-        owner,
-        repository, 
-        new GitReleaseManagerCreateSettings {
-            Milestone         = version,
-            Name              = version,
-            Prerelease        = false,
-            TargetCommitish   = "main"
-        }
-    );
-    
-    var nugets = string.Join(",", GetFiles("./artifacts/*.*nupkg").Select(f => f.FullPath) );
-    Information($"Release files:{Environment.NewLine}  " + nugets.Replace(",", $"{Environment.NewLine}  "));
-
-    
-    GitReleaseManagerAddAssets(
-        gitHubToken,
-        owner,
-        repository,
-        version,
-        nugets
-    );
-    Information($"Publish Release...");
-    GitReleaseManagerPublish(gitHubToken, owner, repository, version);
 });
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -325,7 +280,6 @@ Task("Default")
 .IsDependentOn("Build")
 .IsDependentOn("UnitTests")
 .IsDependentOn("NuGet")
-.IsDependentOn("GitHubRelease")
 .IsDependentOn("NuGetFeed");
 
 RunTarget(target);
