@@ -232,11 +232,6 @@ Task("Credentials")
 {
     Information(Figlet("Credentials"));
     
-    gitHubToken = EnvironmentVariable("GITHUB_TOKEN");
-    if (string.IsNullOrEmpty(gitHubToken))
-    {
-        throw new Exception("Environment variable 'GITHUB_TOKEN' is not set");
-    }
     nugetReleaseToken = EnvironmentVariable("NUGET_TOKEN");
     if (string.IsNullOrEmpty(nugetReleaseToken))
     {
