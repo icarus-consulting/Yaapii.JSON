@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/icarus-consulting/Yaapii.JSON.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>https://github.com/icarus-consulting/Yaapii.JSON/releases</PackageReleaseNotes>
-    <Version>13.3.3</Version>
+    <Version>13.4.0</Version>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\sgKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.15-beta2" />
-    <PackageReference Include="Yaapii.Atoms" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.16" />
+    <PackageReference Include="Yaapii.Atoms" Version="4.0.0" />
   </ItemGroup>
 
 </Project>
