@@ -6,7 +6,7 @@ image: Visual Studio 2019
 configuration: Release
 environment:
   NUGET_TOKEN:
-    secure: tuSD0+uY0iCeIWav9yhXg8Z5KuCj/0m4S4mGstJYjSoDIn8T92ysge+EbAT4hsPU
+    secure: WMwjLAu+4caTaSjFh0LsIK68/vWzL4AdcxtMoIBGfV2lmkaHyHC4JfTP5xd6s+4L
   APPVEYOR_TOKEN:
     secure: wVt1RgJAnhNTyIjtK9yFkQbEEM+fBk1TLUzo0j3pe2U=
 # Do not build feature branch with open Pull Requests
