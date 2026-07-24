@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DocumentationFile>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)\Yaapii.JSON.xml</DocumentationFile>
@@ -17,18 +16,27 @@
     <Version>13.4.1</Version>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\sgKey.snk</AssemblyOriginatorKeyFile>
+    <UseProjectReferences>False</UseProjectReferences>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Include="..\..\LICENSE">
       <PackagePath></PackagePath>
       <Visible>false</Visible>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.16" />
-    <PackageReference Include="Yaapii.Atoms" Version="4.1.4" />
   </ItemGroup>
-
+  <Choose>
+    <When Condition="'$(UseProjectReferences)'=='True'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\..\Yaapii.Atoms\src\Yaapii.Atoms\Yaapii.Atoms.csproj" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="Yaapii.Atoms" Version="4.1.4" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
 </Project>
