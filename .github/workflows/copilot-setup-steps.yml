@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Setup Copilot
-        uses: icarus-consulting/coding-guidelines/actions/setup-copilot@main
+        uses: ./.github/actions/setup-copilot
       - name: Add/Update NuGet Source | ICARUS AppVeyor
         shell: pwsh
         run: |

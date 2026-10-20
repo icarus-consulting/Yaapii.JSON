@@ -1,0 +1,43 @@
+name: "Setup GitHub MCP Server"
+description: "Prepares the GitHub MCP server for Copilot agents"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install GitHub MCP Server on Linux
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        mkdir -p "$HOME/.local/bin"
+
+        curl -L \
+          "https://github.com/github/github-mcp-server/releases/latest/download/github-mcp-server_Linux_x86_64.tar.gz" \
+          -o /tmp/github-mcp-server.tar.gz
+
+        tar -xzf /tmp/github-mcp-server.tar.gz -C "$HOME/.local/bin"
+
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+    - name: Install GitHub MCP Server on Windows
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        $binPath = "$env:USERPROFILE\github-mcp-bin"
+        New-Item -ItemType Directory -Force -Path $binPath | Out-Null
+
+        $zipPath = "$env:RUNNER_TEMP\github-mcp-server.zip"
+
+        Invoke-WebRequest `
+          -Uri "https://github.com/github/github-mcp-server/releases/latest/download/github-mcp-server_Windows_x86_64.zip" `
+          -OutFile $zipPath
+
+        Expand-Archive `
+          -Path $zipPath `
+          -DestinationPath $binPath `
+          -Force
+
+        Add-Content -Path $env:GITHUB_PATH -Value $binPath
+
+    - name: Verify installation
+      shell: bash
+      run: github-mcp-server --version
