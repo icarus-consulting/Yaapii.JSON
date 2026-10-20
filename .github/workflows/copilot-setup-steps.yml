@@ -1,0 +1,33 @@
+#name: "Copilot Setup Steps"
+
+# Automatically run the setup steps when they are changed to allow for easy validation, and
+# allow manual testing through the repository's "Actions" tab
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+      
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest    
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Setup Copilot
+        uses: icarus-consulting/coding-guidelines/actions/setup-copilot@main
+      - name: Add/Update NuGet Source | ICARUS AppVeyor
+        shell: pwsh
+        run: |
+          dotnet nuget remove source "ICARUS Packages" 2>$null
+      
+          dotnet nuget add source "${{ secrets.NUGET_ICARUS_APPVEYOR_URL }}" `
+            --name "ICARUS Packages" `
+            --username "${{ secrets.NUGET_ICARUS_APPVEYOR_USERNAME }}" `
+            --password "${{ secrets.NUGET_ICARUS_APPVEYOR_PASSWORD }}" `
+            --store-password-in-clear-text
