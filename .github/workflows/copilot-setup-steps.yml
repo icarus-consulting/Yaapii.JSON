@@ -21,13 +21,4 @@ jobs:
         uses: actions/checkout@v6
       - name: Setup Copilot
         uses: ./.github/actions/setup-copilot
-      - name: Add/Update NuGet Source | ICARUS AppVeyor
-        shell: pwsh
-        run: |
-          dotnet nuget remove source "ICARUS Packages" 2>$null
-      
-          dotnet nuget add source "${{ secrets.NUGET_ICARUS_APPVEYOR_URL }}" `
-            --name "ICARUS Packages" `
-            --username "${{ secrets.NUGET_ICARUS_APPVEYOR_USERNAME }}" `
-            --password "${{ secrets.NUGET_ICARUS_APPVEYOR_PASSWORD }}" `
-            --store-password-in-clear-text
+    
